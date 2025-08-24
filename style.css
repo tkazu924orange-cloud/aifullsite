@@ -74,3 +74,8 @@ input:focus, select:focus, textarea:focus { outline: 2px solid #bfdbfe; border-c
 .nav ul { flex-direction: column; padding: 10px 16px 16px; gap: 6px; }
 .nav a { padding: 10px 12px; }
 }
+img {
+  max-width: 100%; /* 親の幅に合わせる */
+  border-radius: 12px; /* 角を丸く */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* 影をつける */
+}

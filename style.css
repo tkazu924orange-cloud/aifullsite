@@ -1,0 +1,76 @@
+* { box-sizing: border-box; }
+.nav ul { list-style:none; display:flex; gap: 16px; padding:0; margin:0; }
+.nav a { padding: 8px 10px; border-radius:10px; }
+.nav a:hover { background:#f2f4f8; }
+.menu-btn { display:none; }
+
+
+/* ヒーロー */
+.hero { background: radial-gradient(1000px 400px at 10% 0%, #e9f0ff 0%, transparent 50%); }
+.hero .wrap { padding: 64px 16px; }
+.hero h1 { font-size: clamp(24px, 4vw, 40px); line-height: 1.3; margin:0 0 8px; }
+.lead { color: var(--muted); margin: 0 0 24px; }
+
+
+/* セクション */
+.section { padding: 56px 0; }
+.section.alt { background: var(--soft); }
+.section h2 { font-size: 24px; margin: 0 0 20px; border-left: 6px solid var(--brand); padding-left: 10px; }
+
+
+/* グリッド */
+.grid-2 { display:grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid-3 { display:grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.card { background:#fff; border:1px solid #eee; border-radius:16px; padding:16px; box-shadow: 0 1px 2px #00000008; }
+.price .yen { font-weight:700; font-size: 22px; margin:.2em 0 .6em; }
+.list { margin: .6em 0 0; padding-left: 1.2em; }
+.list li { margin: .3em 0; }
+
+
+/* テーブル風（時間割） */
+.table { display:grid; border:1px solid #e5e7eb; border-radius:12px; overflow:hidden; }
+.table .row { display:grid; grid-template-columns: 120px repeat(3, 1fr); }
+.table .row > div { padding:10px; border-bottom:1px solid #eef0f4; }
+.table .row.head { background:#f5f7fb; font-weight:700; }
+
+
+/* アクセス */
+.map-placeholder { background: repeating-linear-gradient(45deg, #f1f5f9, #f1f5f9 10px, #e2e8f0 10px, #e2e8f0 20px); border:1px dashed #cbd5e1; min-height: 220px; border-radius: 12px; display:flex; align-items:center; justify-content:center; color:#475569; }
+
+
+/* フォーム */
+.form { display:grid; gap:12px; max-width:640px; }
+.form label { display:grid; gap:6px; }
+input, select, textarea { font: inherit; padding: 10px; border-radius: 10px; border:1px solid #dfe3e8; background:#fff; }
+input:focus, select:focus, textarea:focus { outline: 2px solid #bfdbfe; border-color: #93c5fd; }
+
+
+/* フッター */
+.site-footer { border-top:1px solid #eee; padding: 24px 0; }
+.site-footer nav { display:flex; gap:12px; }
+.site-footer small { color: var(--muted); }
+
+
+/* ボタン */
+.btn { display:inline-block; padding: 10px 16px; border:1px solid #dbe2ea; border-radius: 999px; }
+.btn-primary { background: var(--brand); color: #fff; border-color: transparent; }
+.btn-primary:hover { filter: brightness(0.97); }
+
+
+/* トップへ戻る */
+.to-top { position: fixed; right: 20px; bottom: 20px; width: 44px; height:44px; border-radius: 999px; border:1px solid #e5e7eb; background:#fff; box-shadow:0 4px 16px #00000012; display:grid; place-items:center; opacity:0; pointer-events:none; transition:.2s; }
+.to-top.show { opacity:1; pointer-events:auto; }
+
+
+/* レスポンシブ */
+@media (max-width: 900px) {
+.grid-3 { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+.grid-2, .grid-3 { grid-template-columns: 1fr; }
+.menu-btn { display:inline-flex; gap:8px; align-items:center; padding:8px 12px; border:1px solid #e5e7eb; border-radius:12px; background:#fff; }
+.nav { position: absolute; inset: 56px 0 auto 0; background:#fff; border-bottom:1px solid #eee; transform: translateY(-12px); opacity:0; pointer-events:none; transition:.2s; }
+.nav.open { transform: translateY(0); opacity:1; pointer-events:auto; }
+.nav ul { flex-direction: column; padding: 10px 16px 16px; gap: 6px; }
+.nav a { padding: 10px 12px; }
+}

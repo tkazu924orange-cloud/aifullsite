@@ -1,86 +1,117 @@
-<!doctype html>
-</div>
-</section>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>金融アプリ風ページ</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
 
+    <div class="app-container">
+        <header class="header">
+            <div class="header-left">
+                <span class="current-date">2025/10/23現在</span>
+                <a href="#" class="header-link"><i class="fas fa-question-circle"></i> 更新タイミング</a>
+            </div>
+            <div class="header-right">
+                <a href="#" class="member-menu"><i class="fas fa-user-circle"></i> 会員メニュー</a>
+            </div>
+        </header>
 
-<!-- Voice -->
-<section id="voice" class="section alt">
-<div class="wrap">
-<h2>合格者の声</h2>
-<div class="grid-3">
-<blockquote class="card">先生の伴走で勉強のやり方が分かりました。内申が3→4に！（中2）</blockquote>
-<blockquote class="card">苦手な英語長文が伸び、第一志望に合格！（高3）</blockquote>
-<blockquote class="card">家庭学習の計画がうまく回るように。（保護者さま）</blockquote>
-</div>
-</div>
-</section>
+        <section class="payment-section">
+            <div class="payment-item next-payment-date">
+                <span class="label">次回お支払日</span>
+                <div class="value-row">
+                    <span class="date red">2025/10/27</span>
+                    <span class="days-left">お支払い日まであと<b>4</b>日</span>
+                    <a href="#" class="calendar-link"><i class="fas fa-calendar-alt"></i> カレンダー</a>
+                </div>
+            </div>
+            <div class="payment-item next-payment-amount">
+                <span class="label red-tag">次回お支払額</span>
+                <div class="value-row">
+                    <span class="amount red">4,000</span>
+                    <span class="unit">円</span>
+                    <a href="#" class="inquiry-link">返済金額照会</a>
+                </div>
+            </div>
+        </section>
 
+        <section class="usage-summary-section">
+            <div class="usage-item">
+                <span class="label">すでに使った金額</span>
+                <div class="value-row">
+                    <span class="amount">100,000</span>
+                    <span class="unit">円</span>
+                </div>
+            </div>
+            <div class="usage-item">
+                <span class="label">使える金額</span>
+                <div class="value-row">
+                    <span class="amount gray">0</span>
+                    <span class="unit gray">円</span>
+                </div>
+            </div>
+        </section>
 
-<!-- Access -->
-<section id="access" class="section">
-<div class="wrap">
-<h2>アクセス</h2>
-<div class="grid-2">
-<div>
-<p>〒000-0000 東京都〇〇区〇〇 1-2-3 ○○ビル2F<br>平日 16:00-21:30 / 土 13:00-21:30（日祝休）</p>
-<ul class="list">
-<li>最寄り：〇〇駅 東口より徒歩5分</li>
-<li>駐輪場あり／駐車場なし</li>
-</ul>
-</div>
-<div>
-<!-- 実住所が決まったら Google マップ iframe を貼る -->
-<div class="map-placeholder" aria-label="地図準備中">地図（準備中）</div>
-</div>
-</div>
-</div>
-</section>
+        <section class="gauge-section">
+            <div class="gauge-ring-container">
+                <div class="gauge-ring-fill"></div>
+                <div class="gauge-ring-bg"></div>
+                <div class="gauge-center-text">
+                    <span class="label">利用限度額</span>
+                    <span class="amount">90,000 <span class="unit">円</span></span>
+                </div>
+            </div>
+        </section>
 
+        <div class="fee-display">
+            <span class="fee-text">手数料 <b>0</b> 円</span>
+            <span class="fee-arrow"></span>
+        </div>
 
-<!-- Contact -->
-<section id="contact" class="section alt">
-<div class="wrap">
-<h2>お問い合わせ・体験授業</h2>
-<form class="form" name="inquiry" method="post" data-netlify="true">
-<input type="hidden" name="form-name" value="inquiry" />
-<label>お名前 <input type="text" name="name" required></label>
-<label>メール <input type="email" name="email" required></label>
-<label>学年
-<select name="grade" required>
-<option value="">選択してください</option>
-<option>小学生</option>
-<option>中学生</option>
-<option>高校生</option>
-</select>
-</label>
-<label>ご相談内容 <textarea name="message" rows="5" required></textarea></label>
-<button type="submit" class="btn btn-primary">送信する</button>
-<p class="note">※ 24時間以内に担当者よりメールでご連絡します。</p>
-</form>
-</div>
-</section>
-</main>
+        <main class="action-grid">
+            <button class="action-btn">
+                <div class="btn-icon"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAiIHN0cm9va2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTIyIDJMMTEgMTNMNC43IDYuN0wyIDExTDEzIDIyTDIyIDJNMTggNiBMNiAxOCIvPjwvc3ZnPg==" alt="transfer icon"></div>
+                <span>振込みで<br>借りる</span>
+            </button>
+            <button class="action-btn">
+                <div class="btn-icon"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZxqPSJyb3VuZCI+PHBhdGggZD0iTTE4IDJMNiA2djEybDEyIDRWNk02IDZ2MTJoMTJNNiAzLjAzVjIuODJhMSAxIDAgMCAxIC45NS0uOTVsMTUtLjAzYTEgMSAwIDAgMSA1Ljk1LS4wOTVWNi45NWE1LjUyIDUuNTIgMCAwIDEtNS42NS0uNjZtMCAwbTAtLjI1YTEgMSAwIDAgMS0uOTUuOTVsLTE1IC4wM2ExIDEgMCAwIDEtNS45NS4wOTVWMTcuMThhNS41MiA1LjUyIDAgMCAxIDUuNjUuNjZtMCAwIi8+PC9zdmc+" alt="internet icon"></div>
+                <span>インターネットで<br>返す</span>
+            </button>
+            <button class="action-btn atm-btn">
+                <div class="btn-icon seven-bank-logo"></div> <span>スマホATMで<br>借りる</span>
+            </button>
+            <button class="action-btn atm-btn">
+                <div class="btn-icon seven-bank-logo"></div> <span>スマホATMで<br>返す</span>
+            </button>
+        </main>
 
+        <footer class="bottom-nav">
+            <a href="#" class="nav-item active">
+                <i class="fas fa-home"></i>
+                <span>ホーム</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-bell"></i>
+                <span>お知らせ</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-question-circle"></i>
+                <span>チャットで質問</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-file-alt"></i>
+                <span>書類提出</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-bars"></i>
+                <span>メニュー</span>
+            </a>
+        </footer>
+    </div>
 
-<footer class="site-footer">
-<div class="wrap">
-<small>© <span id="year"></span> ○○塾</small>
-<nav aria-label="フッターナビ">
-<a href="#courses">コース</a>
-<a href="#pricing">料金</a>
-<a href="#contact">お問い合わせ</a>
-</nav>
-</div>
-</footer>
-
-
-<button id="toTop" class="to-top" aria-label="ページ先頭へ">↑</button>
-
-<section>
-  <h2>教室の様子</h2>
-  <img src="./images/eps2508.png" alt="教室内の写真" width="600">
-</section>
-
-<script src="./script.js"></script>
 </body>
 </html>

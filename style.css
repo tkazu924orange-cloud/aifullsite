@@ -1,81 +1,387 @@
-* { box-sizing: border-box; }
-.nav ul { list-style:none; display:flex; gap: 16px; padding:0; margin:0; }
-.nav a { padding: 8px 10px; border-radius:10px; }
-.nav a:hover { background:#f2f4f8; }
-.menu-btn { display:none; }
-
-
-/* ヒーロー */
-.hero { background: radial-gradient(1000px 400px at 10% 0%, #e9f0ff 0%, transparent 50%); }
-.hero .wrap { padding: 64px 16px; }
-.hero h1 { font-size: clamp(24px, 4vw, 40px); line-height: 1.3; margin:0 0 8px; }
-.lead { color: var(--muted); margin: 0 0 24px; }
-
-
-/* セクション */
-.section { padding: 56px 0; }
-.section.alt { background: var(--soft); }
-.section h2 { font-size: 24px; margin: 0 0 20px; border-left: 6px solid var(--brand); padding-left: 10px; }
-
-
-/* グリッド */
-.grid-2 { display:grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.grid-3 { display:grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.card { background:#fff; border:1px solid #eee; border-radius:16px; padding:16px; box-shadow: 0 1px 2px #00000008; }
-.price .yen { font-weight:700; font-size: 22px; margin:.2em 0 .6em; }
-.list { margin: .6em 0 0; padding-left: 1.2em; }
-.list li { margin: .3em 0; }
-
-
-/* テーブル風（時間割） */
-.table { display:grid; border:1px solid #e5e7eb; border-radius:12px; overflow:hidden; }
-.table .row { display:grid; grid-template-columns: 120px repeat(3, 1fr); }
-.table .row > div { padding:10px; border-bottom:1px solid #eef0f4; }
-.table .row.head { background:#f5f7fb; font-weight:700; }
-
-
-/* アクセス */
-.map-placeholder { background: repeating-linear-gradient(45deg, #f1f5f9, #f1f5f9 10px, #e2e8f0 10px, #e2e8f0 20px); border:1px dashed #cbd5e1; min-height: 220px; border-radius: 12px; display:flex; align-items:center; justify-content:center; color:#475569; }
-
-
-/* フォーム */
-.form { display:grid; gap:12px; max-width:640px; }
-.form label { display:grid; gap:6px; }
-input, select, textarea { font: inherit; padding: 10px; border-radius: 10px; border:1px solid #dfe3e8; background:#fff; }
-input:focus, select:focus, textarea:focus { outline: 2px solid #bfdbfe; border-color: #93c5fd; }
-
-
-/* フッター */
-.site-footer { border-top:1px solid #eee; padding: 24px 0; }
-.site-footer nav { display:flex; gap:12px; }
-.site-footer small { color: var(--muted); }
-
-
-/* ボタン */
-.btn { display:inline-block; padding: 10px 16px; border:1px solid #dbe2ea; border-radius: 999px; }
-.btn-primary { background: var(--brand); color: #fff; border-color: transparent; }
-.btn-primary:hover { filter: brightness(0.97); }
-
-
-/* トップへ戻る */
-.to-top { position: fixed; right: 20px; bottom: 20px; width: 44px; height:44px; border-radius: 999px; border:1px solid #e5e7eb; background:#fff; box-shadow:0 4px 16px #00000012; display:grid; place-items:center; opacity:0; pointer-events:none; transition:.2s; }
-.to-top.show { opacity:1; pointer-events:auto; }
-
-
-/* レスポンシブ */
-@media (max-width: 900px) {
-.grid-3 { grid-template-columns: 1fr 1fr; }
+/* 変数定義 */
+:root {
+    --main-red: #e60012;
+    --text-dark: #333333;
+    --text-light: #888888;
+    --border-color: #eeeeee;
+    --background-color: #f0f2f5;
+    --link-blue: #007bff; /* 元画像に合わせて調整 */
+    --gray-bg-light: #f5f5f5;
+    --text-inactive: #999999;
 }
-@media (max-width: 640px) {
-.grid-2, .grid-3 { grid-template-columns: 1fr; }
-.menu-btn { display:inline-flex; gap:8px; align-items:center; padding:8px 12px; border:1px solid #e5e7eb; border-radius:12px; background:#fff; }
-.nav { position: absolute; inset: 56px 0 auto 0; background:#fff; border-bottom:1px solid #eee; transform: translateY(-12px); opacity:0; pointer-events:none; transition:.2s; }
-.nav.open { transform: translateY(0); opacity:1; pointer-events:auto; }
-.nav ul { flex-direction: column; padding: 10px 16px 16px; gap: 6px; }
-.nav a { padding: 10px 12px; }
+
+/* 基本設定 */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Hiragino Sans", "Noto Sans CJK JP", "Original Yu Gothic", "Yu Gothic", sans-serif;
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    font-size: 14px; /* 全体のベースフォントサイズ */
+    color: var(--text-dark);
 }
-img {
-  max-width: 100%; /* 親の幅に合わせる */
-  border-radius: 12px; /* 角を丸く */
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* 影をつける */
+
+.app-container {
+    width: 100%;
+    max-width: 420px; /* 元画像に合わせて調整 */
+    min-height: 100vh;
+    background-color: #ffffff;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
 }
+
+/* 共通スタイル */
+.label {
+    font-size: 11px;
+    color: var(--text-dark);
+    line-height: 1.5;
+}
+.value-row {
+    display: flex;
+    align-items: baseline;
+    line-height: 1;
+}
+.amount {
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--text-dark);
+    letter-spacing: -0.5px;
+}
+.unit {
+    font-size: 14px;
+    font-weight: normal;
+    color: var(--text-dark);
+    margin-left: 3px;
+    line-height: 1;
+}
+.amount.red, .unit.red { color: var(--main-red); }
+.amount.gray, .unit.gray { color: var(--text-inactive); }
+a {
+    text-decoration: none;
+    color: var(--link-blue);
+    font-size: 11px;
+}
+a:hover {
+    opacity: 0.8;
+}
+
+/* ヘッダー */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    font-size: 12px;
+    color: var(--text-dark);
+    border-bottom: 1px solid var(--border-color);
+    background-color: #fcfcfc; /* やや明るい背景色 */
+}
+.header-left {
+    display: flex;
+    align-items: center;
+}
+.current-date {
+    margin-right: 15px;
+}
+.header-link {
+    color: #007bff; /* 青色のリンク */
+    font-size: 11px;
+}
+.header-link i {
+    margin-right: 3px;
+    font-size: 10px;
+}
+.member-menu {
+    color: var(--main-red);
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.2;
+}
+.member-menu i {
+    font-size: 20px;
+    margin-bottom: 2px;
+}
+
+/* 支払い情報セクション */
+.payment-section {
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+.payment-item {
+    margin-bottom: 10px;
+}
+.payment-item:last-child {
+    margin-bottom: 0;
+}
+.payment-item .label {
+    display: inline-block; /* spanをinline-blockにして幅調整 */
+    background-color: var(--main-red);
+    color: #fff;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+.payment-item .date {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--main-red);
+    margin-right: 10px;
+}
+.days-left {
+    font-size: 12px;
+    color: var(--text-dark);
+    margin-right: 15px;
+}
+.days-left b {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--main-red);
+}
+.calendar-link {
+    color: var(--link-blue);
+    font-size: 11px;
+}
+.calendar-link i {
+    margin-right: 3px;
+    font-size: 10px;
+}
+.next-payment-amount .label.red-tag {
+    background-color: var(--main-red);
+    color: #fff;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: normal;
+}
+.next-payment-amount .amount {
+    font-size: 32px;
+    line-height: 1;
+    margin-right: 5px;
+}
+.inquiry-link {
+    color: var(--link-blue);
+    font-size: 11px;
+    margin-left: 10px;
+}
+
+/* 利用状況サマリー */
+.usage-summary-section {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 20px 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+.usage-item {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.usage-item:last-child {
+    text-align: right;
+}
+.usage-item .label {
+    margin-bottom: 5px;
+}
+.usage-item .amount {
+    font-size: 28px;
+}
+.usage-item .unit {
+    margin-left: 3px;
+}
+
+
+/* 半円ゲージ */
+.gauge-section {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0 10px;
+}
+.gauge-ring-container {
+    width: 250px; /* 元画像に合わせて調整 */
+    height: 125px; /* 幅の半分 */
+    position: relative;
+    overflow: hidden; /* 半円表示のため */
+}
+.gauge-ring-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 15px solid var(--border-color); /* 背景の薄いグレーのリング */
+    border-bottom: none; /* 下半分を隠す */
+    box-sizing: border-box;
+    transform: rotate(180deg); /* ゲージのスタートを上にするため */
+}
+.gauge-ring-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 15px solid var(--main-red); /* メインの赤いリング */
+    border-bottom-color: transparent; /* 下半分は非表示 */
+    border-right-color: transparent; /* 右半分を非表示にして180度回転で左に */
+    box-sizing: border-box;
+    transform: rotate(225deg); /* 元画像のゲージの位置に調整 (この値をJSで動かす) */
+    /* 90度から270度までが有効な範囲 (180度分) */
+    /* 例: 225degは中央の180deg + 45deg = 左から25% */
+}
+.gauge-center-text {
+    position: absolute;
+    bottom: 0; /* 下に配置 */
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    white-space: nowrap; /* テキストが改行されないように */
+}
+.gauge-center-text .label {
+    font-size: 13px;
+    color: var(--text-inactive);
+    display: block;
+    margin-bottom: 2px;
+}
+.gauge-center-text .amount {
+    font-size: 24px;
+}
+.gauge-center-text .unit {
+    font-size: 12px;
+}
+
+/* 手数料表示 */
+.fee-display {
+    text-align: center;
+    padding: 10px 0;
+    font-size: 14px;
+    color: var(--text-dark);
+    position: relative;
+    border-bottom: 1px solid var(--border-color);
+}
+.fee-display b {
+    font-weight: bold;
+    font-size: 16px;
+}
+.fee-arrow {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg); /* 右斜め上矢印 */
+    width: 8px;
+    height: 8px;
+    border-top: 2px solid var(--text-inactive);
+    border-right: 2px solid var(--text-inactive);
+}
+
+/* アクションボタン */
+.action-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px; /* ボタン間の隙間を調整 */
+    padding: 20px;
+    flex-grow: 1;
+}
+.action-btn {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    font-size: 13px; /* 小さめに調整 */
+    font-weight: bold;
+    color: var(--text-dark);
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    text-align: left;
+    line-height: 1.4;
+}
+.action-btn:hover {
+    background-color: #f9f9f9;
+}
+.action-btn .btn-icon {
+    width: 35px; /* アイコンの領域を確保 */
+    height: 35px;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%; /* アイコン背景を円形に */
+    background-color: #e0f2f7; /* アイコン背景色 */
+}
+.action-btn .btn-icon img {
+    width: 20px; /* SVGアイコンのサイズ */
+    height: 20px;
+    filter: invert(39%) sepia(85%) saturate(1469%) hue-rotate(185deg) brightness(97%) contrast(101%); /* 青色に調整 */
+}
+
+/* 7BANKロゴの再現 (CSSのみで簡易的に) */
+.seven-bank-logo {
+    position: relative;
+    background-color: #eee; /* 仮の背景色 */
+    overflow: hidden;
+    width: 30px; /* ロゴサイズ調整 */
+    height: 20px;
+    border-radius: 3px;
+    display: inline-block;
+}
+.seven-bank-logo::before {
+    content: "7";
+    position: absolute;
+    left: 2px;
+    top: -2px;
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--main-red);
+}
+.seven-bank-logo::after {
+    content: "BANK";
+    position: absolute;
+    right: 2px;
+    bottom: -2px;
+    font-size: 10px;
+    font-weight: bold;
+    color: #444;
+}
+
+
+/* フッターナビゲーション */
+.bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    border-top: 1px solid var(--border-color);
+    padding: 8px 0;
+    background-color: #fafafa;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.02);
+}
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-light);
+    font-size: 10px;
+    flex-basis: 0;
+    flex-grow: 1;
+    padding: 5px 0;
+}
+.nav-item i {
+    font-size: 20px;
+    margin-bottom: 4px;
+}
+.nav-item span {
+    line-height: 1;
+}
+.nav-item.active {
+    color: var(--main-red);
+}
+
+
